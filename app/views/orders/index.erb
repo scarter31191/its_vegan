@@ -1,0 +1,9 @@
+<% @orders.each do |order| %>
+    <p> Order Number: <%= order.id %> </p>
+    <p> Address: <%= order.address %> </p>
+    <p> Total: <%= order.total %> </p>
+    <p> Username: <%=order.user.username%> </p>
+
+<% end %>
+
+<a href="/users/<%= session[:user_id] %>">Home</a>
