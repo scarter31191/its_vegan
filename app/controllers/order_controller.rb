@@ -16,27 +16,28 @@ class OrderController < ApplicationController
     end
 
     #read
-    get '/orders/:id' do
-        @order = Order.find(params[:id])
-        erb :'/orders/show'
-    end
 
     get '/orders' do
         @orders = current_user.orders
         erb :'/orders/index'
     end
 
-    get '/orders/all' do
-        erb :"orders/index"
-      end
+    # get '/orders/all' do
+    #     erb :"orders/index"
+    #   end
 
+      get '/orders/:id' do
+        @order = Order.find(params[:id])
+        erb :'/orders/show'
+    end
+    
         #update
     get '/orders/:id/edit' do
         @order = Order.find(params[:id])
         erb :'orders/edit'
     end
 
-    patch '/orders/:id' do
+    patch '/updateorders/:id' do
         @order = Order.find(params[:id])
         @order.update(
             address: params[:address], 

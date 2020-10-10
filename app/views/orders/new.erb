@@ -3,9 +3,9 @@
 <a href="/users/<%= session[:user_id] %>">Home</a>
 
 <form action='/orders' method="POST">
-    Address: <input type=text name='address'>
-    Item: <input type=text name='item'>
-    Item_price: <input type=number name='item_price'>
-    Total: <input type=number name='total'>
+    Address: <input type=text name='address' required>
+    Item: <input type=text name='item' required>
+    Item_price: <input type=number name='item_price' required>
+    Total: <input type=number name='total' required>
     <input type=submit>
 </form>

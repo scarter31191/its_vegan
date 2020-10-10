@@ -1,6 +1,6 @@
 <h1> Edit order </h1>
 
-<form action="/orders/<%= @order.id %>" method="post">
+<form action="/updateorders/<%= @order.id %>" method="post">
     <input type="hidden" name="_method" value="PATCH">
     Address: <input type=text value="<%= @order.address %>" name='address'>
     Item: <input type=text value="<%= @order.item %>" name='item'>
