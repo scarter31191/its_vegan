@@ -22,10 +22,6 @@ class OrderController < ApplicationController
         erb :'/orders/index'
     end
 
-    # get '/orders/all' do
-    #     erb :"orders/index"
-    #   end
-
       get '/orders/:id' do
         @order = Order.find(params[:id])
         erb :'/orders/show'
