@@ -16,25 +16,27 @@ class OrderController < ApplicationController
     end
 
     #read
+    get '/orders/:id' do
+        @order = Order.find(params[:id])
+        authorized_user
+        erb :'/orders/show'
+    end
 
     get '/orders' do
         @orders = current_user.orders
         erb :'/orders/index'
     end
-
-      get '/orders/:id' do
-        @order = Order.find(params[:id])
-        erb :'/orders/show'
-    end
     
         #update
     get '/orders/:id/edit' do
         @order = Order.find(params[:id])
+        authorized_user
         erb :'orders/edit'
     end
 
-    patch '/updateorders/:id' do
+    patch '/updateorders/:id' do 
         @order = Order.find(params[:id])
+        authorized_user
         @order.update(
             address: params[:address], 
             item: params[:item], 
@@ -44,13 +46,13 @@ class OrderController < ApplicationController
         redirect "/orders/#{@order.id}"
     end
 
-
     #delete
     delete '/orders/:id' do
         @order = Order.find(params[:id])
+        authorized_user
         @order.destroy
         redirect '/orders'
     end
 
 
-end
+end 

@@ -3,15 +3,11 @@ Item: <%= @order.item%><br>
 Price: <%= @order.item_price%><br>
 Total: <%= @order.total%><br>
 
-<%if authorized_user?(@order)%>
-
     <form method="post" action="/orders/<%= @order.id %>">
         <input id="hidden" type="hidden" name="_method" value="DELETE">
         <input type="submit" value="delete">
     </form>
 
-<%end%> 
-
 <a href="/orders/new">Add Order</a>
-<a href="/users/<%= session[:user_id] %>">Home</a>
+<a href="/home">Home</a>
 <a href="/orders/<%= params[:id] %>/edit">Edit Order</a>

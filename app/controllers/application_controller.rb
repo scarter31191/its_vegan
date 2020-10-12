@@ -17,6 +17,10 @@ class ApplicationController < Sinatra::Base
     erb :goodbye
   end
 
+  get "/error" do
+    erb :error
+  end
+
   helpers do
 
     def current_user
@@ -27,8 +31,11 @@ class ApplicationController < Sinatra::Base
       !!session[:user_id]
     end
 
-    def authorized_user?(order)
-      order.user == current_user
+    def authorized_user
+      @creator_of_order = Order.find(params[:id]).user_id
+        if current_user.id != @creator_of_order
+          redirect "/error"
+        end
     end
 
   end

@@ -14,14 +14,14 @@ class UserController < ApplicationController
             if @user.id == nil
                 erb :'error'
             else
-                redirect "/users/#{@user.id}"
+                redirect "/home"
             end
     end
 
     get '/users/login' do
         if logged_in?
             @user = User.find(session[:user_id])
-            redirect "/users/#{@user.id}"
+            redirect "/home"
         else
             erb :'users/login'
         end
@@ -32,18 +32,18 @@ class UserController < ApplicationController
 
         if @user && @user.authenticate(params[:password])
            session[:user_id] = @user.id
-           redirect "/users/#{@user.id}"
+           redirect "/home"
         else
             redirect "/users/login"
         end
     end
 
-    get '/users/:id' do
-        @user = User.find(params[:id])
+    get '/home' do
+        @user = current_user
         erb :'/users/show'
     end
 
-    get '/users/:id/logout' do
+    get '/logout' do
         session.clear
         redirect '/'
     end
